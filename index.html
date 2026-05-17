@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message For You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Initial Envelope Screen */
+        #envelope-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .envelope-icon {
+            font-size: 100px;
+            animation: float 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .click-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff4757;
+            letter-spacing: 2px;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Verification Popup Box */
+        #auth-box {
+            display: none;
+            background: #111111;
+            border: 1px solid #ff4757;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        #auth-box h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #ff4757;
+        }
+
+        #auth-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            background: #222;
+            color: #fff;
+            border-radius: 8px;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #auth-box button {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #auth-box button:hover {
+            background: #ff6b81;
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+        }
+
+        /* Main Letter Screen */
+        #letter-screen {
+            display: none;
+            width: 100%;
+            max-width: 650px;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .letter-paper {
+            background: #ffffff;
+            color: #2f3542;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            position: relative;
+            line-height: 1.8;
+            font-size: 16px;
+            text-align: justify;
+            border-left: 5px solid #ff4757;
+        }
+
+        .letter-paper p {
+            margin-bottom: 18px;
+        }
+
+        .letter-heart {
+            text-align: center;
+            font-size: 24px;
+            color: #ff4757;
+            margin-top: 25px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" src="http://googleusercontent.com/file_content/0" loop></audio>
+
+    <div id="envelope-screen" onclick="showAuthBox()">
+        <div class="envelope-icon">💌</div>
+        <div class="click-text">Click to open the letter</div>
+    </div>
+
+    <div id="auth-box">
+        <h2>Enter Your Name...</h2>
+        <input type="text" id="crush-name" placeholder="Type here..." autocomplete="off">
+        <button onclick="verifyName()">Open</button>
+    </div>
+
+    <div id="letter-screen">
+        <div class="letter-paper">
+            <p>আমি তোমাকে যখন প্রথম দেখেছিলাম, তোমাকে দেখেই আমার 'লাভ অ্যাট ফার্স্ট সাইট' হয়ে যায়। তখন বুঝতে পারিনি যে তুমি আমার জন্য কতটা ইম্পর্টেন্ট...</p>
+            
+            <p>আমি প্রথমে সেই ভালোলাগাকে জাস্ট একটা মোহ মনে করে অন্য একটা রিলেশনে চলে গিয়েছিলাম। কিন্তু যত দিন যাচ্ছিল, তোমার প্রতি আমার অনুভব আরও গভীর হতে থাকে। আমি সেই সম্পর্ক আর কন্টিনিউ করতে পারিনি, শেষমেশ আমার বেস্ট ফ্রেন্ডের হেল্প নিয়ে আমি ওই সম্পর্ক থেকে বের হয়ে আসি।</p>
+            
+            <p>তোমাকে প্রতিদিন কলেজে দেখা, ক্লাসে দেখা... কখনো চোখাচোখি হয়ে গেলে তুমি হয়তো খারাপ ভাববে, তাই লুকিয়ে লুকিয়ে দেখা—এইসব কিছু নিয়ে আমি তোমার ওপর পুরো দেওয়ানা হয়ে গিয়েছিলাম। এমনকি আমার ফ্রেন্ডও জানে যে তুমি আমার ওয়ান সাইডেড লাভ। He is not my someone...</p>
+            
+            <p>আমি প্রথমে ভেবেছিলাম তুমি শুধুই আমার একটা সাধারণ ভালোলাগা। কিন্তু এই ভালোলাগা যে অনেক আগেই ভালোবাসায় রূপান্তর হয়ে গেছে, তা আমি হয়তো তোমাকে বুঝাতে পারব না। আমি ঠিক কী পরিমাণ তোমাকে ভালোবেসে ফেলেছি, তা প্রকাশ করার ভাষা আমার জানা নেই। খালি এইটুকুই জানি—তুমি আমার মোহ নও, তুমি আমার মায়া! আমি এমন এক মায়ায় পড়েছি যে এখন আর এখান থেকে বের হওয়া কোনোভাবেই সম্ভব না।</p>
+            
+            <p>তোমাকে হারানোর ভয়ে আমি কখনো কিচ্ছু বলিনি। তোমার সাথে কখনো কথাও হয়নি, না হয়েছিল আমাদের মধ্যে কোনো বন্ধুত্ব। কিন্তু আজকে আর নিজেকে কোনোভাবেই আটকাতে পারলাম না, তাই বলেই দিলাম। আমি জানি হয়তো আমি রিজেক্ট হব, পরে সবার কাছে একটা ফানি টপিক হয়ে যাব; কিন্তু আমার এই ফিলিংস একটুও মিথ্যা না। আজকে আমি ভেবেই নিয়েছি—চাই রিজেক্ট হই আর চাই এক্সেপ্ট হই, আজকে আমি আমার মনের কথা বলবই।</p>
+            
+            <p>জীবনে যার কাছেই ভালোবাসা আশা করেছি, তাকেই হারিয়েছি, ধোকা খেয়েছি। তাই খুব ভয় হয়... কিন্তু বিশ্বাস করো, আমি আর নিজের মধ্যে এই অনুভূতি চেপে রাখতে পারছিলাম না, তাই আজ বলেই দিলাম।</p>
+            
+            <p><strong>Be my someone please...</strong></p>
+            
+            <p>আমি প্রমিস করছি, আমি কখনো তোমাকে ধোকা দেব না, চিট করব না। আমি হয়তো দেখতে খুব সুন্দর না, কিন্তু আমার ভালোবাসা বিন্দুমাত্র মিথ্যা না। আমি কি একটুও ভালোবাসা ডেজার্ভ করি না? তুমি আমাকে ভালোবাসো আর নাই বাসো, আমি তোমাকে এভাবেই ভালোবেসে যাব। চৌদ্দজনকে ভালোবাসার বদলে একজনকে সারাজীবন ভালোবাসাটাই হয়তো শ্রেয়। ইতি—এক অনাকাঙ্ক্ষিত মানুষ।</p>
+            
+            <div class="letter-heart">❤️</div>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bg-music');
+
+        function showAuthBox() {
+            // Hide envelope screen and show auth box
+            document.getElementById('envelope-screen').style.display = 'none';
+            document.getElementById('auth-box').style.display = 'block';
+            
+            // Try playing audio as soon as the envelope is clicked
+            audio.play().catch(error => console.log("Audio playback waiting for further interaction."));
+        }
+
+        function verifyName() {
+            const nameInput = document.getElementById('crush-name').value.trim().toLowerCase();
+            
+            // Checks if the entered name is 'shihab'
+            if (nameInput === 'shihab') {
+                document.getElementById('auth-box').style.display = 'none';
+                document.getElementById('letter-screen').style.display = 'flex';
+                
+                // Ensure music plays when the letter opens successfully
+                audio.play();
+            } else {
+                alert("Wrong name! This letter isn't meant for you.");
+                document.getElementById('crush-name').value = '';
+            }
+        }
+    </script>
+</body>
+</html
