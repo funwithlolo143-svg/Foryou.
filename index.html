@@ -153,8 +153,10 @@
 </head>
 <body>
 
-    <audio id="bg-music" src="http://googleusercontent.com/file_content/0" loop></audio>
-
+    <audio id="bg-music"loop preload="auto">
+<source src="bestie.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     <div id="envelope-screen" onclick="showAuthBox()">
         <div class="envelope-icon">💌</div>
         <div class="click-text">Click to open the letter</div>
